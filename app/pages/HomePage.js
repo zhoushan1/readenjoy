@@ -17,6 +17,8 @@ import {
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import HomePage1 from './HomePage1';
+import LoginPage1 from './LoginPage1';
+import DetailPage from './DetailPage';
 
 
 var NativeModule = NativeModules.CLRNBrigeManager;
@@ -35,8 +37,9 @@ export default class HomePage extends Component {
     //扫码后的相机回调
     _identifyQRCodeResult(result) {
 
-        console.log("_identifyQRCodeResult")
-        console.log(result)
+        console.log("_identifyQRCodeResult");
+        console.log(result);
+        
     }
 
     _onPress() {
@@ -78,8 +81,8 @@ export default class HomePage extends Component {
             if (navigator) {
                 navigator.push(
                     {
-                        name: 'HomePage1',
-                        component: HomePage1
+                        name: 'DetailPage',
+                        component: DetailPage
                     }
                 )
             }

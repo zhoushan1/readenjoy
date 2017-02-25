@@ -69,21 +69,8 @@ export default class SearchHeader extends Component{
             alert(err)
         })
 
-        // Ajax.post(url,data,{
-        //     'Accept': 'application/json',
-        //     "Content-Type": "application/x-www-form-urlencoded"
-        // }).then((res)=> {
-        //     let result=JSON.parse(res);
-        //     console.log(result);
-        // }).catch((err)=>{
-        //     console.log(err);
-        // });
 
 
-
-
-
-        //console.log(bookName)
     }
 }
 

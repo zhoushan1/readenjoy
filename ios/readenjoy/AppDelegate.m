@@ -19,7 +19,8 @@
   NSURL *jsCodeLocation;
 
 //  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  jsCodeLocation = [NSURL URLWithString:@"http://172.16.10.76:8081/index.ios.bundle"];
+  //jsCodeLocation = [NSURL URLWithString:@"http://172.16.10.76:8081/index.ios.bundle"];
+  jsCodeLocation = [NSURL URLWithString:@"http://172.16.33.120:8081/index.ios.bundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"readenjoy"
