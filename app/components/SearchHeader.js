@@ -11,6 +11,8 @@ import {
 import Common from '../common/constants';
 import utils from '../common/utils';
 import * as urls from '../common/common_url';
+import Ajax from 'ajax-promise-es6'
+
 
 export default class SearchHeader extends Component{
     constructor(props) {
@@ -61,13 +63,21 @@ export default class SearchHeader extends Component{
             size:20
         };
 
-        utils.post(url,data,(result)=>{
+        utils.ajax_post(url,data,(result)=>{
             console.log(result)
-
         },(err)=>{
             alert(err)
         })
 
+        // Ajax.post(url,data,{
+        //     'Accept': 'application/json',
+        //     "Content-Type": "application/x-www-form-urlencoded"
+        // }).then((res)=> {
+        //     let result=JSON.parse(res);
+        //     console.log(result);
+        // }).catch((err)=>{
+        //     console.log(err);
+        // });
 
 
 

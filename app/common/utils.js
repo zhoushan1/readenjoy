@@ -3,6 +3,7 @@
  */
 
 'use strict';
+import Ajax from 'ajax-promise-es6'
 //公共方法库
 let Util = {
 //get请求
@@ -13,6 +14,17 @@ let Util = {
                 successCallback(result);
             }).catch((err)=> {
             failCallback(err)
+        });
+    },
+    ajax_post:(url, data, successCallback, failCallback)=>{
+        Ajax.post(url,data,{
+            'Accept': 'application/json',
+            "Content-Type": "application/x-www-form-urlencoded"
+        }).then((res)=> {
+            let result=JSON.parse(res);
+            successCallback(result);
+        }).catch((err)=>{
+            failCallback(err);
         });
     },
 //post请求
@@ -27,7 +39,8 @@ let Util = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Content-Type": "application/x-www-form-urlencoded"
+                //'Content-Type': 'application/json'
                 //'Content-Type': 'multipart/form-data',
             },
             body: formData
