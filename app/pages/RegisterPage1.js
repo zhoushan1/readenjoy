@@ -1,3 +1,4 @@
+
 /**
  * Created by zhoushan on 2017/2/22.
  */
@@ -19,14 +20,12 @@ import RegisterPage from './RegisterPage';
 import HomePage1 from './HomePage1';
 import LoginPage1 from './LoginPage1';
 import DetailPage from './DetailPage';
-import Sweep from './Sweep';
-import Test from './Test';
 
 
 var NativeModule = NativeModules.CLRNBrigeManager;
 var QRCodeEvent = new NativeEventEmitter(NativeModules.CLEventEmitter);
 
-export default class HomePage extends Component {
+export default class Sweep extends Component {
 
     componentDidMount() {
         console.log("componentDidMount")
@@ -70,13 +69,7 @@ export default class HomePage extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.jump.bind(this)} style={styles.btn}>
                     <Text style={{color: 'red'}}>
-                        页面跳转测试
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={this.sweep.bind(this)} style={styles.btn}>
-                    <Text style={{color: 'red'}}>
-                        扫码demo
+                        页面跳转
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -89,21 +82,8 @@ export default class HomePage extends Component {
             if (navigator) {
                 navigator.push(
                     {
-                        name: 'Test',
-                        component: Test
-                    }
-                )
-            }
-        });
-    }
-    sweep(){
-        InteractionManager.runAfterInteractions(() => {
-            const {navigator}=this.props;
-            if (navigator) {
-                navigator.push(
-                    {
-                        name: 'Sweep',
-                        component: Sweep
+                        name: 'DetailPage',
+                        component: DetailPage
                     }
                 )
             }

@@ -1,4 +1,7 @@
 /**
+ * Created by zhoushan on 2017/2/25.
+ */
+/**
  * Created by zhoushan on 2017/2/22.
  */
 import React, {Component} from 'react';
@@ -20,13 +23,18 @@ import HomePage1 from './HomePage1';
 import LoginPage1 from './LoginPage1';
 import DetailPage from './DetailPage';
 import Sweep from './Sweep';
-import Test from './Test';
 
 
 var NativeModule = NativeModules.CLRNBrigeManager;
 var QRCodeEvent = new NativeEventEmitter(NativeModules.CLEventEmitter);
 
 export default class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+              bookName: [123,456]
+         }
+    }
 
     componentDidMount() {
         console.log("componentDidMount")
@@ -51,34 +59,26 @@ export default class HomePage extends Component {
     }
 
     render() {
+
+        let datas=this.state.bookName;
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Press Cmd+R to reload,{'\n'}
-                    Cmd+D or shake for dev ccccccccccc!!!!!
-                </Text>
-                <TouchableOpacity onPress={this._onPress.bind(this)} style={styles.btn}>
-                    <Text style={{color: 'red'}}>
-                        开启扫码相机
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.jump.bind(this)} style={styles.btn}>
-                    <Text style={{color: 'red'}}>
-                        页面跳转测试
-                    </Text>
-                </TouchableOpacity>
 
-                <TouchableOpacity onPress={this.sweep.bind(this)} style={styles.btn}>
-                    <Text style={{color: 'red'}}>
-                        扫码demo
-                    </Text>
-                </TouchableOpacity>
+
+                {datas.map((data)=>{
+                    return (
+                        <TouchableOpacity onPress={this.jump.bind(this)} style={styles.btn} bookName={data} ref="aaa">
+                            <Text style={{color: 'red'}}>
+                                跳到详情页{data}
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                })
+
+                }
+
+
+
             </View>
         );
     }
@@ -86,29 +86,28 @@ export default class HomePage extends Component {
     jump() {
         InteractionManager.runAfterInteractions(() => {
             const {navigator}=this.props;
+            const book=this.refs.aaa.props.bookName;
             if (navigator) {
                 navigator.push(
                     {
-                        name: 'Test',
-                        component: Test
+                        name: 'DetailPage',
+                        component: DetailPage,
+                        params: {
+                            bookName: book,
+                            //回调!从SecondPageComponent获取user
+                            getUser: function(user) {
+                                // _this.setState({
+                                //     user: user
+                                // })
+                            }
+                        }
+
                     }
                 )
             }
         });
     }
-    sweep(){
-        InteractionManager.runAfterInteractions(() => {
-            const {navigator}=this.props;
-            if (navigator) {
-                navigator.push(
-                    {
-                        name: 'Sweep',
-                        component: Sweep
-                    }
-                )
-            }
-        });
-    }
+
 
 
 }

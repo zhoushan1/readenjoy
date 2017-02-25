@@ -27,6 +27,39 @@ let Util = {
             failCallback(err);
         });
     },
+    //解析数据
+    handleData:(res)=>{
+        let obj;
+        if(res.code==10000){
+            obj={
+                title:res.data.title,  //书名
+                summary:res.data.summary,//简介
+                publisher:res.data.publisher,//出版社
+                images:res.data.images.large,//封面链接
+                objectId:res.data.objectId,//商品id
+                origin_title:res.data.origin_title,//原始title
+                subtitle:res.data.subtitle,//副标题
+                updatedAt:res.data.updatedAt,//扫码时间
+                createdAt:res.data.createdAt,//数据创建时间
+                price:res.data.price,
+                isbn13:res.data.isbn13,//图书书号(扫码)
+
+            }
+        }else {
+            alert('数据返回失败');
+            obj={};
+        }
+        return obj;
+    },
+    //图书列表
+    handleList:(res)=>{
+        if(res.code==10000){
+            return res.data;
+        }else {
+            alert(res.msg);
+            return;
+        }
+    },
 //post请求
     post: (url, data, successCallback, failCallback) => {
         let formData = new FormData();
@@ -39,9 +72,9 @@ let Util = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                "Content-Type": "application/x-www-form-urlencoded"
+                //"Content-Type": "application/x-www-form-urlencoded"
                 //'Content-Type': 'application/json'
-                //'Content-Type': 'multipart/form-data',
+                'Content-Type': 'multipart/form-data',
             },
             body: formData
             // body: JSON.stringify(data)

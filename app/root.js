@@ -6,12 +6,13 @@ import {
 } from 'react-native';
 
 import HomePage from './pages/HomePage';
+import Index from './pages/Index';
 //初始化路由,默认第一个页面是登录页面
 class NavigatorJump extends Component{
     render(){
-        let defaultName='HomePage';
+        let defaultName='Index';
         //将组件class实例化成<Component/>标签
-        let defaultComponent=HomePage;
+        let defaultComponent=Index;
 
         return(
             <Navigator

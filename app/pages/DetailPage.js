@@ -34,6 +34,13 @@ export default class readenjoy extends Component {
     };
   }
 
+    componentDidMount() {
+        this.setState({
+            bookName: this.props.bookName
+        });
+
+    }
+
   onClickShare() {
       Alert.alert('Button has been pressed!');
   };
@@ -42,7 +49,7 @@ export default class readenjoy extends Component {
     return (
        <View style={styles.container}>
          <Image source={require('../img/detail/detail_background.png')} style={{flex:1}} />
-         <View style={styles.infoArea} style={{flex:2, marginLeft: 30, marginRight:30}}>
+         <View style={[styles.infoArea,styles.infoArea_a]}>
             <Text style={styles.bookNameStyle}>{this.state.bookName}</Text>
             <View style={{flexDirection: 'row', marginTop:30}}>
                 <Text style={styles.textLightBlack1}>所属分类:</Text>
@@ -82,6 +89,11 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: '#ffffff'
   },
+    infoArea_a:{
+        flex:2,
+        marginLeft: 30,
+        marginRight:30
+    },
   bookNameStyle: {
     marginTop: 80,
     fontSize: 19,
